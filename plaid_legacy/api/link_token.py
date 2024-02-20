@@ -1,4 +1,4 @@
-from plaid.api.api import API
+from plaid_legacy.api.api import API
 
 link_token_field_names = [
     'user',

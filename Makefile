@@ -2,7 +2,7 @@
 
 .PHONY: lint
 lint:
-	flake8 plaid
+	flake8 plaid_legacy
 
 # Requires tox to be installed and in the executable path
 .PHONY: test

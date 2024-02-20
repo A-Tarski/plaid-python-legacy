@@ -3,7 +3,7 @@ Client.Processor.* tests.
 '''
 import pytest
 
-from plaid.errors import InvalidRequestError
+from plaid_legacy.errors import InvalidRequestError
 
 from tests.integration.util import (
     create_client

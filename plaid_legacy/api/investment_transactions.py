@@ -1,8 +1,8 @@
-from plaid.api.api import API
+from plaid_legacy.api.api import API
 
 
-class Transactions(API):
-    '''Transactions endpoints.'''
+class InvestmentTransactions(API):
+    '''InvestmentTransactions endpoints.'''
 
     def get(self,
             access_token,
@@ -14,8 +14,8 @@ class Transactions(API):
             offset=None,
             ):
         '''
-        Return accounts and transactions for an item.
-        (`HTTP docs <https://plaid.com/docs/api/#transactions>`__)
+        Return accounts and investment transactions for an item.
+        (`HTTP docs <https://plaid.com/docs/api/#investment-transactions>`__)
 
         The transactions in the response are paginated -- compare the number of
         transactions received so far against response['total_transactions'] to
@@ -42,27 +42,9 @@ class Transactions(API):
         if offset is not None:
             options['offset'] = offset
 
-        return self.client.post('/transactions/get', {
+        return self.client.post('/investments/transactions/get', {
             'access_token': access_token,
             'start_date': start_date,
             'end_date': end_date,
             'options': options,
-        })
-
-    def refresh(self,
-                access_token,
-                ):
-        '''
-        Request on-demand refresh of transactions and balances for an Item
-        (`HTTP docs <https://plaid.com/docs/api/#transactions-refresh>`__)
-
-        Calls to /transactions/refresh will initiate an on-demand check for new
-        transactions since last scheduled update. If there are fresh
-        transactions, Plaid will fire a webhook. To fetch these transactions,
-        call /transactions/get.
-
-        :param  str     access_token:
-        '''
-        return self.client.post('/transactions/refresh', {
-            'access_token': access_token,
         })

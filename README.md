@@ -37,7 +37,7 @@ For a full list of endpoints and arguments, see the [python docs][7].
 To call an endpoint you must create a `Client` object.
 
 ```python
-from plaid import Client
+from plaid_legacy import Client
 
 # Available environments are 'sandbox', 'development', and 'production'.
 client = Client(client_id='***', secret='***', environment='sandbox')
@@ -51,7 +51,7 @@ HTTP response.
 You can specify the Plaid API version you wish to use when initializing `plaid`.
 
 ```python
-from plaid import Client
+from plaid_legacy import Client
 
 client = Client(
   client_id='***',
@@ -69,29 +69,29 @@ All non-200 responses will throw a `plaid.errors.PlaidError`.
 
 ```python
 import requests
-from plaid import Client
-from plaid.errors import APIError, ItemError
+from plaid_legacy import Client
+from plaid_legacy.errors import APIError, ItemError
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
 try:
-    client.Auth.get(access_token)
+  client.Auth.get(access_token)
 except ItemError as e:
-    # check the code attribute of the error to determine the specific error
-    if e.code == 'ITEM_LOGIN_REQUIRED':
-        # the users' login information has changed, generate a public_token
-        # for the user and initialize Link in update mode to
-        # restore access to this user's data
-        # see https://plaid.com/docs/api/#updating-items-via-link
-    else:
-        ...
+  # check the code attribute of the error to determine the specific error
+  if e.code == 'ITEM_LOGIN_REQUIRED':
+  # the users' login information has changed, generate a public_token
+  # for the user and initialize Link in update mode to
+  # restore access to this user's data
+  # see https://plaid.com/docs/api/#updating-items-via-link
+  else:
+    ...
 except APIError as e:
-    if e.code == 'PLANNED_MAINTENANCE':
-        # inform user
-    else:
-        ...
+  if e.code == 'PLANNED_MAINTENANCE':
+  # inform user
+  else:
+    ...
 except requests.Timeout:
-    # retry request
+# retry request
 ```
 
 For more information on Plaid response codes, head to the [docs][3].
@@ -101,9 +101,9 @@ For more information on Plaid response codes, head to the [docs][3].
 
 ### Create an Item using Link
 Exchange a `public_token` from [Plaid Link][4] for a Plaid access token:
-```python
-from plaid import Client
 
+```python
+from plaid_legacy import Client
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
@@ -119,8 +119,7 @@ that `access_token` and the Plaid Link `account_id` (received along with the
 `public_token`) for a Stripe `bank_account_token`:
 
 ```python
-from plaid import Client
-
+from plaid_legacy import Client
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
@@ -134,7 +133,7 @@ bank_account_token = stripe_response['stripe_bank_account_token']
 ### Remove Item
 
 ```python
-from plaid import Client
+from plaid_legacy import Client
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
@@ -143,8 +142,9 @@ client.Item.remove(access_token)
 ```
 
 ### Retrieve Transactions
+
 ```python
-from plaid import Client
+from plaid_legacy import Client
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
@@ -154,16 +154,17 @@ transactions = response['transactions']
 # the transactions in the response are paginated, so make multiple calls while increasing the offset to
 # retrieve all transactions
 while len(transactions) < response['total_transactions']:
-    response = client.Transactions.get(access_token, start_date='2016-07-12', end_date='2017-01-09',
-                                       offset=len(transactions)
-                                      )
-    transactions.extend(response['transactions'])
+  response = client.Transactions.get(access_token, start_date='2016-07-12', end_date='2017-01-09',
+                                     offset=len(transactions)
+                                     )
+  transactions.extend(response['transactions'])
 ```
 
 ### Retrieve Other Data
 Most other item data can be retrieved by following this pattern:
+
 ```python
-from plaid import Client
+from plaid_legacy import Client
 
 client = Client(client_id='***', secret='***', environment='sandbox')
 
@@ -177,9 +178,9 @@ Public endpoints (category information) require no authentication and can be
 accessed as follows:
 
 ```python
-import plaid
+import plaid_legacy
 
-client = plaid.Client(None, None, None)
+client = plaid_legacy.Client(None, None, None)
 
 categories = client.Categories.get()
 ```

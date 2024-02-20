@@ -2,7 +2,7 @@
 
 import os
 
-from plaid import Client
+from plaid_legacy import Client
 
 
 def create_client():

@@ -1,6 +1,6 @@
 import warnings
 
-from plaid.api import (
+from plaid_legacy.api import (
     Accounts,
     AssetReport,
     Auth,
@@ -22,8 +22,8 @@ from plaid.api import (
     Webhooks,
 )
 
-from plaid.internal.requester import DEFAULT_TIMEOUT, post_request
-from plaid.internal.utils import urljoin
+from plaid_legacy.internal.requester import DEFAULT_TIMEOUT, post_request
+from plaid_legacy.internal.utils import urljoin
 
 
 class Client(object):

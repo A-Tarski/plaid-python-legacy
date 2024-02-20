@@ -1,5 +1,5 @@
 import time
-from plaid.errors import AssetReportError
+from plaid_legacy.errors import AssetReportError
 from tests.integration.util import (
     create_client,
     SANDBOX_INSTITUTION,

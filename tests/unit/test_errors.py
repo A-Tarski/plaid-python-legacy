@@ -1,4 +1,4 @@
-from plaid.errors import APIError, PlaidError
+from plaid_legacy.errors import APIError, PlaidError
 
 
 def test_from_response():

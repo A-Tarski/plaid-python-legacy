@@ -3,8 +3,8 @@ from functools import partial
 
 import requests
 
-from plaid.errors import PlaidError
-from plaid.version import __version__
+from plaid_legacy.errors import PlaidError
+from plaid_legacy.version import __version__
 
 
 ALLOWED_METHODS = {'post'}
