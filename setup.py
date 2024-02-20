@@ -8,10 +8,10 @@ with open('plaid/version.py', 'r') as f:
 if not version:
     raise RuntimeError('Cannot find version information')
 
-url = 'https://github.com/plaid/plaid-python'
+url = 'https://github.com/A-Tarski/plaid-python-legacy'
 
 setup(
-    name='plaid-python',
+    name='plaid-python-legacy',
     version=version,
     description='Python client library for the Plaid API and Link',
     long_description='',
